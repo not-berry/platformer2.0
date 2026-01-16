@@ -8,7 +8,7 @@ void loadWorld() {
     for(int x = 0; x < map.width; x++) {
       color c = map.get(x, y);
       if(c == black) {
-        normBlock(x,y);
+        dirt(x,y);
       }
     }
   }

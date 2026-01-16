@@ -6,8 +6,12 @@ class FPlayer extends FBox {
     
     //looks
     setFillColor(black);
+    //setNoStroke();
     
     //properties
+    setRestitution(0);
+    setDensity(10);
+    setFriction(0);
     setGrabbable(false);
     setRotatable(false);
   }

@@ -9,8 +9,8 @@ color black = #000000;
 
 //world
 PImage map;
-int gridSize = 64;
-float zoom = 0.7;
+int gridSize = 32;
+float zoom = 2;
 
 //key variables
 boolean upKey, leftKey, rightKey, downKey, spacebar;
@@ -21,8 +21,11 @@ FPlayer player;
 void setup() {
   size(1400, 1000);
   
+  loadTextures();
+  
   loadWorld();
   loadPlayer();
+  
 }
 
 void draw() {
