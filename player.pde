@@ -1,44 +1,81 @@
-class FPlayer extends FBox {
+class FPlayer extends FGameObject {
+  int x; int y; int frame; int direction;
+  final int L = -1;
+  final int R = 1;
   
-  FPlayer() {
-    super(gridSize, gridSize);
-    setPosition(300,0);
+  int lives;
+  FPlayer(int _x, int _y) {
+    super();
+    x = _x; y = _y; frame = 0; direction = R; lives = 3;
+    setPosition(x*gridSize,y*gridSize);
+    setName("player");
     
     //looks
-    setFillColor(black);
+    //setFillColor(cBlock);
     //setNoStroke();
     
     //properties
-    setRestitution(0);
-    setDensity(10);
-    setFriction(0);
+    setRestitution(.1);
+    setDensity(50);
+    setFriction(2);
     setGrabbable(false);
     setRotatable(false);
+    
+    world.add(this);
   }
   
   void act() {
-  float vx = player.getVelocityX();
-  float vy = player.getVelocityY();
-  
-  //side movement
-  if(leftKey && !rightKey) vx = -600;
-  if(rightKey && !leftKey) vx = 600;
-  
-  //slow down
-  if(!leftKey && !rightKey || leftKey && rightKey) vx *= 0.9;
-  if(vx < 10 && vx > -10) vx = 0;
-  
-  //jump
-  ArrayList<FContact> contacts = player.getContacts();
-  if(upKey && contacts.size() > 0) vy = -500;
-  if(vy > 0) vy *= 1.01;
-  
-  //apply
-  player.setVelocity(vx,vy);
+    input();
+    collisions();
+    animate();
   }
-}
-
-void loadPlayer() {
-  player = new FPlayer();
-  world.add(player);
+  
+  void input() {
+    float vx = getVelocityX();
+    float vy = getVelocityY();
+    
+    //idle
+    if(abs(vy) < 1) action = idle;
+    
+    //side movement
+    if(leftKey && !rightKey) {
+      vx = -300;
+      action = run;
+      direction = L;
+    }
+    if(rightKey && !leftKey) {
+      vx = 300;
+      action = run;
+      direction = R;
+    }
+  
+    //jump
+    ArrayList<FContact> contacts = player.getContacts();
+    if(upKey && contacts.size() > 0) vy = -400;
+    if(abs(vy) > 10) action = jump;
+    
+    //apply
+    player.setVelocity(vx,vy);
+  }
+  
+  void collisions() {
+    if(isTouching("spike")) {
+      bleh();
+    }
+  }
+  
+  void animate() {
+    if(frame >= action.length) frame = 0;
+    if(frameCount % 5 == 0) {
+      if(direction == R) attachImage(action[frame]);
+      if(direction == L) attachImage(reverseImage(action[frame]));
+      frame++;
+    }
+  }
+  
+  void bleh() {
+    setVelocity(0,0);
+    setPosition(x*gridSize,y*gridSize);
+    lives--;
+  }
 }
