@@ -13,3 +13,9 @@ void keyReleased() {
   if(keyCode == 's' || keyCode == 'S' || keyCode == DOWN) downKey = false;
   if(keyCode == ' ') spacebar = false;
 }
+
+void mousePressed() {
+  //if(mode == "intro") mode = "game";
+  if(mode == "game") mode = "pause";
+  else if(mode == "pause") mode = "game";
+}

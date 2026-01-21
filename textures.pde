@@ -20,6 +20,8 @@ PImage trunk;
 PImage bridge_center;
 PImage bridge_left;
 PImage bridge_right;
+PImage sign;
+PImage ladder;
 
 //player animations
 PImage[] idle;
@@ -29,6 +31,15 @@ PImage[] action;
 
 //GOOMBA
 PImage[] gWalk;
+
+//lava
+PImage[] lavaPop;
+
+//pogo
+PImage[] pWalk;
+
+//thwomp
+PImage[] mad;
 
 
 void loadTextures() {
@@ -53,6 +64,8 @@ void loadTextures() {
   bridge_center = loadImage("bridge_center.png");
   bridge_left = loadImage("bridge_left.png");
   bridge_right = loadImage("bridge_right.png");
+  sign = loadImage("sign.png");
+  ladder = loadImage("ladder.png");
   
   //load actions
   idle = new PImage[2];
@@ -74,4 +87,23 @@ void loadTextures() {
   gWalk = new PImage[2];
   gWalk[0] = loadImage("goomba0.png");
   gWalk[1] = loadImage("goomba1.png");
+  
+  //lava
+  lavaPop = new PImage[5];
+  lavaPop[0] = loadImage("lava0.png");
+  lavaPop[1] = loadImage("lava1.png");
+  lavaPop[2] = loadImage("lava2.png");
+  lavaPop[3] = loadImage("lava3.png");
+  lavaPop[4] = loadImage("lava4.png");
+  
+  //pogo
+  pWalk = new PImage[2];
+  pWalk[0] = loadImage("hammerbro0.png");
+  pWalk[1] = loadImage("hammerbro1.png");
+  
+  //thwomp
+  mad = new PImage[2];
+  mad[0] = loadImage("thwomp0.png");
+  mad[1] = loadImage("thwomp1.png");
+  
 }

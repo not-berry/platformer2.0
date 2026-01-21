@@ -2,11 +2,9 @@ class FPlayer extends FGameObject {
   int x; int y; int frame; int direction;
   final int L = -1;
   final int R = 1;
-  
-  int lives;
   FPlayer(int _x, int _y) {
     super();
-    x = _x; y = _y; frame = 0; direction = R; lives = 3;
+    x = _x; y = _y; frame = 0; direction = R;
     setPosition(x*gridSize,y*gridSize);
     setName("player");
     
@@ -28,6 +26,7 @@ class FPlayer extends FGameObject {
     input();
     collisions();
     animate();
+    if(isTouching("portal")) world2();
   }
   
   void input() {
@@ -74,8 +73,15 @@ class FPlayer extends FGameObject {
   }
   
   void bleh() {
+    if(lives <= 1) mode = "gameover";
     setVelocity(0,0);
-    setPosition(x*gridSize,y*gridSize);
+    setPosition(spawnX,spawnY);
     lives--;
+  }
+  
+  void world2() {
+    world.clear();
+    level = 2;
+    loadWorld();
   }
 }
