@@ -73,6 +73,7 @@ class FPogo extends FGameObject {
   void act() {
     move();
     animate();
+    collision();
   }
   
   void animate() {
@@ -92,6 +93,18 @@ class FPogo extends FGameObject {
     if(upKey && contacts.size() > 0 && dist(getX(),getY(), player.getX(),player.getY()) < 7*gridSize) vy = -500;
     if(dist(getX(),getY(), player.getX(),player.getY()) < 7*gridSize) setVelocity(-21*d,vy);
     else setVelocity(0,vy);
+  }
+  
+  void collision() {
+    if(isTouching("player")) {
+      if(player.getY() < getY()-gridSize/2) {
+        player.setVelocity(player.getVelocityX(), -300);
+        world.remove(this);
+        enemies.remove(this);
+      } else {
+        player.bleh();
+      }
+    }
   }
 }
 

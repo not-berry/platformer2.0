@@ -266,6 +266,8 @@ class FSign extends FGameObject {
       if(map.get((int)getX()/gridSize,((int)getY()-1)/gridSize) == #EBE0AD) showSign("This game isn't Mario.\nI dont pirate.");
       else if(map.get((int)getX()/gridSize,((int)getY()-1)/gridSize) == #EDE2AF) showSign("Mario is on controller\nwhile this game is not.");
       else if(map.get((int)getX()/gridSize,((int)getY()-1)/gridSize) == #F0E5B1) showSign("dying is a skill issue\n:(          (not lag)");
+      else if(map.get((int)getX()/gridSize,((int)getY()-1)/gridSize) == #DED4A3) showSign("Riddle: when is L \ngreater than XL?");
+      else if(map.get((int)getX()/gridSize,((int)getY()-1)/gridSize) == #DBD1A1) showSign("THE END\nBYE BYE NOW");
     }
   }
   

@@ -57,7 +57,8 @@ boolean mouseReleased = false;
 boolean wasPressed = false;
 
 void setup() {
-  size(1400, 1000);
+  size(1400, 1000, JAVA2D);
+  noSmooth();
   terrain = new ArrayList<FGameObject>();
   enemies = new ArrayList<FGameObject>();
   
